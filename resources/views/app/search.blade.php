@@ -1,7 +1,7 @@
 @extends('app.layouts.template')
 
 @section('title')
-    موسیقی کده
+    جستجو
 @endsection
 
 @section('styles')
@@ -19,7 +19,7 @@
                 </div>
                 <h5 class="py-2 ">جدید ترین آهنگ ها</h5>
             </div>
-            <div class="m-2 border rounded">
+            {{-- <div class="m-2 border rounded">
                 <div class="header mb-2 d-flex justify-content-between">
                     <div class="w-60 song-name">
                         <p class="my-1"><i class="fa fa-microphone"></i> &nbsp بهترین خاطره</p>
@@ -58,6 +58,9 @@
                         <a href="" class="link mx-3"><span>پخش</span></a>
                     </div>
                 </div>
+            </div> --}}
+            <div class="search-result border rounded">
+                <h4 class="mt-5 mb-5">نتیجه ای یافت نشد!</h4>
             </div>
         </div>
         <div class="col-4">

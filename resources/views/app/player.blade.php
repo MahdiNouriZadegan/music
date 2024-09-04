@@ -1,87 +1,14 @@
-<html lang="en">
+@extends('app.layouts.template')
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+@section('title')
+    موسیقی کده
+@endsection
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+@section('styles')
+    @parent
+@endsection
 
-    <link rel="stylesheet" href="assets/css/style.css">
-    <link rel="stylesheet" href="assets/css/home.css">
-    <link rel="stylesheet" href="assets/css/player.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg==" crossorigin="anonymous" referrerpolicy="no-referrer"
-    />
-
-</head>
-
-<body>
-    <header class="container">
-        <div class="site-header d-flex justify-content-between align-items-center">
-            <div class="d-flex align-items-center">
-                <img src="images/music.png" alt="" class="logo p-1">
-                <h4>موسیقی کده</h4>
-            </div>
-            <div class="authentication">
-                <button href="" class="btn"> <a href="">ثبت نام</a> </button> / <button href="" class="btn"> <a
-                        href="">ورود</a> </button>
-            </div>
-        </div>
-        <div class="menu-header">
-            <ul>
-                <li><a href="">خانه</a></li>
-                <li><a href="">جدید ها</a></li>
-                <li><a href="">پاپ</a></li>
-                <li><a href="">سنتی</a></li>
-            </ul>
-        </div>
-
-    </header>
-    <!-- Slider main container -->
-    <div class="container swiper singers-slider">
-        <!-- Additional required wrapper -->
-        <div class="swiper-wrapper">
-            <!-- Slides -->
-            <div class="swiper-slide">
-                <img src="images/singer1.jpg" alt="" />
-                <a>محسن چاووشی</a>
-            </div>
-            <div class="swiper-slide">
-                <img src="images/singer1.jpg" alt="" />
-                <a>محسن چاووشی</a>
-            </div>
-            <div class="swiper-slide">
-                <img src="images/singer1.jpg" alt="" />
-                <a>محسن چاووشی</a>
-            </div>
-            <div class="swiper-slide">
-                <img src="images/singer1.jpg" alt="" />
-                <a>محسن چاووشی</a>
-            </div>
-            <div class="swiper-slide">
-                <img src="images/singer1.jpg" alt="" />
-                <a>محسن چاووشی</a>
-            </div>
-            <div class="swiper-slide">
-                <img src="images/singer1.jpg" alt="" />
-                <a>محسن چاووشی</a>
-            </div>
-            <div class="swiper-slide">
-                <img src="images/singer1.jpg" alt="" />
-                <a>محسن چاووشی</a>
-            </div>
-            <div class="swiper-slide">
-                <img src="images/singer1.jpg" alt="" />
-                <a>محسن چاووشی</a>
-            </div>
-            <div class="swiper-slide">
-                <img src="images/singer1.jpg" alt="" />
-                <a>محسن چاووشی</a>
-            </div>
-
-        </div>
-    </div>
+@section('content')
 
     <!-- Content -->
     <div class="container">
@@ -213,35 +140,7 @@
                 </div>
             </div>
             <div class="col-4">
-
-                <div class="bg-left-side ">
-                    <div class="d-flex header align-items-center ">
-                        <h5 class="py-2 ">محبوب ترین ها</h5>
-                        <div class="line "></div>
-                    </div>
-                    <div class="m-1 p-2 border rounded box ">
-                        <a href=" " class="popular-link ">یه دل میگه برم</a>
-                        <p class="text-dark font-small my-1 ">گوگوش</p>
-                        <i>
-                            <p class="text-secondary m-0 font-small ">بازدید: 210</p>
-                        </i>
-                    </div>
-                    <div class="m-1 p-2 border rounded box ">
-                        <a href=" " class="popular-link ">یه دل میگه برم</a>
-                        <p class="text-dark font-small my-1 ">گوگوش</p>
-                        <i>
-                            <p class="text-secondary m-0 font-small ">بازدید: 210</p>
-                        </i>
-                    </div>
-                    <div class="m-1 p-2 border rounded box ">
-                        <a href=" " class="popular-link ">یه دل میگه برم</a>
-                        <p class="text-dark font-small my-1 ">گوگوش</p>
-                        <i>
-                            <p class="text-secondary m-0 font-small ">بازدید: 210</p>
-                        </i>
-                    </div>
-                </div>
-
+                @include('app.layouts.partials.left-side')
                 <!-- short link box (slb) -->
                 <div class="slb mt-3 border">
                     <small><i>لینک کوتاه</i></small>
@@ -292,43 +191,9 @@
         </div>
     </div>
 
-    <footer class="footer ">
-        <div class="container ">
-            <!-- search-box-footer (sbf) -->
-            <div class="sbf ">
-                <form action=" ">
-                    <input type="text " placeholder="آهنگ/خواننده و... " />
-                    <button class="link "><span><i class="fa fa-search " aria-hidden="true "></i></span></button>
-                </form>
-            </div>
 
-            <div class="footer-content ">
-                <div class="footer-head ">
-                    <h4>جدید ترین آهنگ ها در موسیقی کده</h4>
-                </div>
-                <div class="footer-menu ">
-                    <ul>
-                        <li><a href=" ">آهنگ</a></li>
-                        <li><a href=" ">خواننده</a></li>
-                        <li><a href=" ">آواز</a></li>
-                        <li><a href=" ">پاپ</a></li>
-                    </ul>
-                </div>
-                <div class="copy-right ">
-                    <p>تمام حقوقی مادی و معنوی متعلق به سایت موسیقی کده می باشد!</p>
-                </div>
-            </div>
+@endsection
 
-        </div>
-
-    </footer>
-
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js "></script>
-    <script src="assets/js/script.js "></script>
-    <script src="assets/js/player.js "></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js "></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-    </script>
-</body>
-
-</html>
+@section('scripts')
+    @parent
+@endsection

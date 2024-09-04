@@ -76,3 +76,8 @@
     color: white;
     padding: 5px 10px;
 }
+
+.search-result {
+    text-align: center;
+    margin: 0px auto;
+}
