@@ -1,0 +1,84 @@
+.auth {
+    position: relative;
+    width: 500px;
+    margin: auto;
+    margin-top: 150px;
+    /* border: 1px solid rgb(17, 153, 251); */
+    box-shadow: 0 0 3px #1b9efbbe;
+    padding: 15px;
+    border-radius: 15px;
+}
+
+.auth .header-auth {
+    width: fit-content;
+    margin: 0px auto;
+    margin-top: -25px;
+    padding: 0px 20px;
+    background-color: white;
+    margin-bottom: 40px;
+}
+
+.auth-box span {
+    position: absolute;
+    z-index: 10;
+    top: 8px;
+    right: 17px;
+    background-color: white;
+    color: black;
+    padding: 0px 5px;
+    font-size: 0.9rem;
+}
+
+.auth-box {
+    position: relative;
+    height: 40px;
+    margin: 22px 0px;
+}
+
+.auth-box input {
+    height: 100%;
+    padding: 0px 10px;
+}
+
+.auth-box input[name='password'] {
+    padding-left: 40px;
+}
+
+.auth-box input:focus {
+    box-shadow: none !important;
+}
+
+footer {
+    margin-top: 14rem !important;
+}
+
+@keyframes bg-auth {
+    0% {
+        right: -100px;
+        opacity: 0;
+    }
+    100% {
+        right: 0px;
+        opacity: 1;
+    }
+}
+
+.bg-auth {
+    position: absolute;
+    width: 350px;
+    right: -100px;
+    opacity: 0;
+    animation: bg-auth 1s linear forwards;
+}
+
+.container {
+    position: relative;
+}
+
+.auth-box i {
+    color: rgb(66, 66, 66);
+    position: absolute;
+    left: 10px;
+    top: 10px;
+    cursor: pointer;
+}

@@ -1,0 +1,214 @@
+.music-image {
+    width: 300px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+.music-detail {
+    text-align: center;
+    direction: rtl;
+}
+
+.line-height-music {
+    line-height: 30px !important;
+}
+
+.music-player {
+    padding: 10px;
+    padding-bottom: 0;
+    border: 1px solid rgb(201, 201, 201);
+    border-radius: 5px;
+    background-color: #242d43;
+}
+
+.time-line-box {
+    position: relative;
+    width: 100%;
+    height: 10px;
+    background-color: rgb(228, 228, 228);
+}
+
+.music-detail .time-line {
+    width: 0%;
+    height: 100%;
+    position: absolute;
+    background-color: var(--link-header-color);
+    opacity: 0.5;
+}
+
+.pointer {
+    cursor: pointer;
+}
+
+@keyframes rotateCover {
+    0% {
+        transform: rotate(0);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.music-cover img {
+    border-radius: 100%;
+    width: 70px;
+    height: 70px;
+    /* animation-name: rotateCover;
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+    animation-direction: normal; */
+    animation: rotateCover 5s linear infinite;
+}
+
+#timer {
+    padding: 5px 10px;
+    border: 1px solid rgb(221, 221, 221);
+    height: fit-content;
+    color: white;
+    margin: 0px;
+    margin-top: -16px;
+    border-radius: 5px;
+    margin-right: 8px;
+}
+
+.flip {
+    -webkit-transform: scaleX(-1);
+    transform: scaleX(-1);
+}
+
+.feedback-to-comment p {
+    padding: 0px 5px;
+    padding-top: 3px;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+}
+
+.feedback-to-comment p:hover {
+    color: #e3e3e3;
+}
+
+.feedback-to-comment p:first-child {
+    background-color: rgb(74, 145, 92);
+}
+
+.feedback-to-comment p:last-child {
+    background-color: rgb(145, 74, 74);
+}
+
+.view {
+    background-color: var(--bg-color);
+    border-radius: 5px;
+    height: fit-content;
+    padding: 5px 10px;
+}
+
+.favorite,
+.view {
+    color: white;
+    border-radius: 5px;
+}
+
+.favorite {
+    padding: 10px;
+    margin-right: 10px;
+    height: fit-content;
+    background-color: rgb(223, 163, 85);
+    cursor: pointer;
+}
+
+.badge-comment {
+    background-color: var(--bg-color);
+    border: none;
+}
+
+.sl {
+    padding: 10px;
+    color: grey;
+    border: 1px solid rgb(175, 175, 175);
+    margin: 0px 20px 20px 20px;
+}
+
+.sl i {
+    cursor: pointer;
+}
+
+.slb,
+.sl {
+    border-radius: 5px;
+}
+
+.slb small {
+    display: block;
+    padding: 5px 10px;
+    border-radius: 5px 5px 0px 0px;
+    width: 100%;
+    color: white;
+    background-color: var(--link-header-color);
+}
+
+#success-copy {
+    display: none;
+}
+
+.volume-control i {
+    color: white;
+    font-size: large;
+    padding: 10px;
+}
+
+.volume-control {
+    margin-right: 10px;
+}
+
+.volume-line-box {
+    width: 0px;
+    height: 5px;
+    background-color: rgb(228, 228, 228);
+    position: relative;
+    top: 17px;
+    transition: all 0.2s;
+}
+
+.volume-line {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background-color: var(--link-header-color);
+}
+
+.volume-controller-box:hover>.volume-line-box {
+    width: 80px;
+}
+
+#volume {
+    color: white;
+    padding: 8px;
+}
+
+.reaction-form label {
+    font-size: x-large;
+    padding: 10px 10px 8px 10px;
+    background-color: #242d43a0;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.1s;
+    text-align: center;
+    position: relative;
+}
+
+.reaction-form label span {
+    font-size: small;
+    color: white;
+    background-color: rgb(23, 96, 197);
+    /* padding: 0px 15px; */
+    position: absolute;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    left: 0px;
+    width: 100%;
+}
+
+.reaction-form label:hover {
+    scale: 1.1;
+}
