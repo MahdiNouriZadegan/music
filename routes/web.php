@@ -43,7 +43,7 @@ Route::middleware('guest')->group(function() {
     });
 });
 
-Route::middleware('auth')->get('logout', [AuthController::class, 'logout']);
+Route::middleware('auth')->get('logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::middleware('admin')->prefix('admin')->group(function() {
     Route::get('/',[PanelController::class, 'index']);

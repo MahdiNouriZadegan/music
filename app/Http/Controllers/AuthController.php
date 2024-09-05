@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Requests\RegisterRequest;
+use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
@@ -37,4 +38,9 @@ class AuthController extends Controller
         return view('auth.login');
     }
     public function login_store() {}
+
+    public function logout() {
+        Auth::logout();
+        return redirect('/');
+    }
 }

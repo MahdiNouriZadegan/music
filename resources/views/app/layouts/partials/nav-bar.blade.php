@@ -13,7 +13,7 @@
         @auth
         <div class="authentication">
             <button
-                class="btn"> <a class="text-light">{{ auth()->user()->name }}</a> </button>
+                class="btn"> <a href="{{ url('/dashboard') }}" class="text-light">{{ auth()->user()->name }}</a> </button>
         </div>
         @endauth
         @guest
