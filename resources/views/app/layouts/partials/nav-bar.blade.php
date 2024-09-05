@@ -10,10 +10,19 @@
                 <button>جستجو کن</button>
             </form>
         </div>
+        @auth
         <div class="authentication">
-            <button href="" class="btn"> <a href="">ثبت نام</a> </button> / <button href="" class="btn"> <a
-                    href="">ورود</a> </button>
+            <button
+                class="btn"> <a class="text-light">{{ auth()->user()->name }}</a> </button>
         </div>
+        @endauth
+        @guest
+        <div class="authentication">
+            <button class="btn"> <a>ثبت نام</a> </button> / <button
+                class="btn"> <a>ورود</a> </button>
+        </div>
+        @endguest
+
     </div>
     <div class="menu-header">
         <ul>

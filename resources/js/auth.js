@@ -1,4 +1,14 @@
 $(document).ready(function() {
+    $('.auth-box input').each(function(index, element) {
+        if ($(element).val() != '') {
+            $(element).prev().animate({
+                top: '-20px',
+                right: '6px'
+            }, 180);
+        }
+    });
+
+
     $('.auth-box input').focus(function(e) {
         // .css('top', '-20px')
         $(e.target).prev().animate({

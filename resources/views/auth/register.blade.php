@@ -13,14 +13,15 @@
             <div class="header-auth">
                 <h4 class="text-dark">فرم ثبت نام</h4>
             </div>
-            <form action="register.html" method="get" id="auth-form">
+            <form action="{{ route('register_store') }}" method="post" id="auth-form">
+                @csrf
                 <div class="auth-box">
                     <span>نام کاربری</span>
-                    <input type="text" name="name" id="name" class="text-secondary form-control" />
+                    <input type="text" value="{{ old('name') }}" name="name" id="name" class="text-secondary form-control" />
                 </div>
                 <div class="auth-box">
                     <span>ایمیل</span>
-                    <input type="email" name="email" class="text-secondary form-control" />
+                    <input type="email" value="{{ old('email') }}" name="email" class="text-secondary form-control" />
 
                 </div>
                 <div class="auth-box">
@@ -30,10 +31,11 @@
                 </div>
                 <div class="auth-box">
                     <span>تکرار رمز عبور</span>
-                    <input type="password" name="confirm_password" class="text-secondary form-control" />
+                    <input type="password" name="password_confirmation" class="text-secondary form-control" />
                 </div>
                 <button class="btn btn-success mt-2">ثبت نام</button>
             </form>
+            @include('app.layouts.partials.errors')
         </div>
     </div>
 @endsection
