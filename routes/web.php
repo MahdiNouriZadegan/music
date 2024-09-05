@@ -12,7 +12,9 @@ use App\Http\Controllers\MenuContentController;
 use App\Http\Controllers\PostContentController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\SingerController;
+use App\Http\Controllers\User\CommentController as UserCommentController;
 use App\Http\Controllers\User\FavortieController;
+use App\Http\Controllers\User\NewPostController;
 use App\Http\Controllers\User\PanelController as UserPanelController;
 use Illuminate\Support\Facades\Route;
 
@@ -62,12 +64,8 @@ Route::middleware('admin')->prefix('admin')->group(function() {
 
 Route::middleware('auth')->prefix('dashboard')->group(function() {
     Route::get('/', [UserPanelController::class, 'index']);
-    
-    Route::resource('/tags', TagController::class);
-    Route::resource('/menus', MenuController::class);
-    Route::resource('/singers', SingertController::class);
-    Route::resource('/comments', CommentController::class);
-    
+    Route::resource('/comments', UserCommentController::class);
+    Route::get('/new', [NewPostController::class, 'index']);
     Route::group(['prefix'=>'/favorites'],function() {
         Route::get('/store', [FavortieController::class, 'index']);
         Route::delete('/delete/{id}', [FavortieController::class, 'delete']);

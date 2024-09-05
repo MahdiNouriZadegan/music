@@ -9,10 +9,11 @@
     فرم ساخت منو
 </div>
 <div class="user-info">
-    <form action="">
+    <form action="{{ url('admin/menus/') }}" method="POST">
+        @csrf
         <div class="row">
             <div class="col-12">
-                <label for="name">عنوان:</label>
+                <label for="name">نام:</label>
                 <input type="text" name="name" id="name" class="form-control mt-2" />
             </div>
 
@@ -21,6 +22,7 @@
             </div>
         </div>
     </form>
+    @include('app.layouts.partials.errors')
 
 </div>
 @endsection

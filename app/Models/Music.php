@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Music extends Model
 {
+    protected $table = 'musics';
     use HasFactory;
 
     public function tags() {

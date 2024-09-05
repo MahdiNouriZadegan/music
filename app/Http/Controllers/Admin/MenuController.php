@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
+use App\Models\Menu;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class MenuController extends Controller
 {
@@ -12,7 +13,8 @@ class MenuController extends Controller
      */
     public function index()
     {
-        //
+        $menus = Menu::all();
+        return view('app.admin.menu.index')->with(['menus'=>$menus]);
     }
 
     /**
@@ -20,7 +22,7 @@ class MenuController extends Controller
      */
     public function create()
     {
-        //
+        return view('app.admin.menu.create');
     }
 
     /**
@@ -28,7 +30,14 @@ class MenuController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name'=>['required', 'unique:menus']
+        ]);
+        $name = $request->name;
+        Menu::create([
+            'name'=>$name
+        ]);
+        return redirect('admin/menus')->with('success', 'منو با موفقیت ساخته شد!');
     }
 
     /**
@@ -44,7 +53,8 @@ class MenuController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $menu = Menu::findOrFail($id);
+        return view('app.admin.menu.edit')->with('menu', $menu);
     }
 
     /**
@@ -52,7 +62,14 @@ class MenuController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            'name'=>['required', 'unique:menus']
+        ]);
+
+        $menu = Menu::findOrFail($id);
+        $menu->name = $request->name;
+        $menu->save();
+        return redirect('admin/menus')->with('success', 'منو با موفقیت تغییر یافت');
     }
 
     /**
@@ -60,6 +77,8 @@ class MenuController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $menu = Menu::findOrFail($id);
+        Menu::destroy($id);
+        return redirect('admin/menus')->with('success', 'منو با موفقعیت حذف شد!');
     }
 }
