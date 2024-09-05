@@ -1,10 +1,14 @@
-@extends('app.layouts.template') @section('title')
+@extends('app.layouts.template')
+@section('title')
     فرم ثبت نام
-    @endsection @section('styles')
+@endsection
+@section('styles')
     @parent
-    @endsection @section('content')
-    <div class="container ">
-        <img src="images/bg-auth.png" class="bg-auth" alt="">
+    @vite('resources/css/auth.css')
+@endsection
+@section('content')
+    <div class="container">
+        <img src="{{ url('images/bg-auth.png') }}" class="bg-auth" alt="">
         <div class="auth">
             <div class="header-auth">
                 <h4 class="text-dark">فرم ثبت نام</h4>
@@ -32,6 +36,8 @@
             </form>
         </div>
     </div>
-    @endsection @section('scripts')
+@endsection
+@section('scripts')
     @parent
+    @vite('resources/js/auth.js');
 @endsection
