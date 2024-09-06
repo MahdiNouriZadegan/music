@@ -1,8 +1,9 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
-
 use App\Http\Controllers\Controller;
+use App\Models\Music;
+use App\Models\Singer;
 use Illuminate\Http\Request;
 
 class SingertController extends Controller
@@ -11,8 +12,10 @@ class SingertController extends Controller
      * Display a listing of the resource.
      */
     public function index()
-    {
-        //
+    {   
+        $singers = Singer::all();
+        $musics = Music::all();
+        return view('app.admin.singer.index')->with(['singers'=>$singers, 'musics'=>$musics]);
     }
 
     /**
