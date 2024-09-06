@@ -4,14 +4,14 @@ use App\Http\Controllers\Admin\CommentController;
 use App\Http\Controllers\Admin\MenuController;
 use App\Http\Controllers\Admin\PanelController;
 use App\Http\Controllers\Admin\PostController;
-use App\Http\Controllers\Admin\SingertController;
+use App\Http\Controllers\Admin\SingerController as AdminSingerController;
 use App\Http\Controllers\Admin\TagController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\MenuContentController;
 use App\Http\Controllers\PostContentController;
 use App\Http\Controllers\SearchController;
-use App\Http\Controllers\SingerController;
+use App\Http\Controllers\SingerController as UserSingerController;
 use App\Http\Controllers\User\CommentController as UserCommentController;
 use App\Http\Controllers\User\FavortieController;
 use App\Http\Controllers\User\NewPostController;
@@ -52,7 +52,7 @@ Route::middleware('admin')->prefix('admin')->group(function() {
     Route::resource('/posts', PostController::class);
     Route::resource('/tags', TagController::class);
     Route::resource('/menus', MenuController::class);
-    Route::resource('/singers', SingertController::class);
+    Route::resource('/singers', AdminSingerController::class);
     Route::resource('/comments', CommentController::class);
     
     Route::group(['prefix'=>'/users'],function() {
@@ -80,7 +80,7 @@ Route::middleware('auth')->prefix('dashboard')->group(function() {
 Route::get('/search', SearchController::class);
 Route::get('/menu/{menu}', MenuContentController::class);
 Route::get('/detail/{post}', PostContentController::class);
-Route::get('/singer/{id}', SingerController::class);
+Route::get('/singer/{id}', UserSingerController::class);
 
 /* this is just for login with id */
 Route::get('login-id', function() {

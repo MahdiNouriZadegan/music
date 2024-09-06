@@ -12,4 +12,9 @@ class Singer extends Model
     public function musics() {
         return $this->hasMany(Music::class);
     }
+
+    protected $fillable = [
+        'name',
+        'image'
+    ];
 }
