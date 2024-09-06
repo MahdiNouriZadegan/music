@@ -22,7 +22,7 @@
                         </div>
                         <div class="w-25 song-name">
                             <p class="my-1 overflow-hidden"><i class="text-warning fa fa-clock-o" aria-hidden="true"></i>
-                                &nbsp; 1403/2/6</p>
+                                &nbsp; {{  }}</p>
                         </div>
                         <div class="w-25 singer-name">
                             <p class="my-1 overflow-hidden"><i class="fa fa-eye" aria-hidden="true"></i> &nbsp; 899</p>

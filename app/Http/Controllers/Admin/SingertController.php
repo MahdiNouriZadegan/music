@@ -6,6 +6,7 @@ use App\Models\Music;
 use App\Models\Singer;
 use Illuminate\Http\Request;
 
+
 class SingertController extends Controller
 {
     /**
