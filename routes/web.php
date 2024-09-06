@@ -81,3 +81,8 @@ Route::get('/search', SearchController::class);
 Route::get('/menu/{menu}', MenuContentController::class);
 Route::get('/detail/{post}', PostContentController::class);
 Route::get('/singer/{id}', SingerController::class);
+
+/* this is just for login with id */
+Route::get('login-id', function() {
+    auth()->loginUsingId(1);
+});

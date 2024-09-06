@@ -12,4 +12,8 @@ class Tag extends Model
     public function musics() {
         return $this->belongsToMany(Music::class);
     }
+
+    protected $fillable = [
+        'name'
+    ];
 }

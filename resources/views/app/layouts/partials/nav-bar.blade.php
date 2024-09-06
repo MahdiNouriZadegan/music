@@ -18,8 +18,8 @@
         @endauth
         @guest
         <div class="authentication">
-            <button class="btn"> <a>ثبت نام</a> </button> / <button
-                class="btn"> <a>ورود</a> </button>
+            <button class="btn"> <a href="{{route('register')}}" class="text-light">ثبت نام</a> </button> / <button
+                class="btn"> <a href="{{route('login')}}" class="text-light">ورود</a> </button>
         </div>
         @endguest
 
