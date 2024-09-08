@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Comment;
 use Illuminate\Http\Request;
 
 class CommentController extends Controller
@@ -12,7 +13,8 @@ class CommentController extends Controller
      */
     public function index()
     {
-        //
+        $comments = Comment::all();
+        return view('app.admin.comment.index')->with(['comments' => $comments]);
     }
 
     /**
@@ -60,6 +62,21 @@ class CommentController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        Comment::findOrFail($id)->delete();
+        return redirect('admin/comments')->with('success', 'نظر با موفقیت حذف گردید!');
+    }
+
+    public function change_status($id)
+    {
+        $comment = Comment::findOrFail($id);
+        if ($comment->status == 'hidden') {
+            $comment->status = 'show';
+            $comment->save();
+            return redirect('admin/comments')->with('success', 'وضعیت نمایش نظر تغییر یافت!');
+        } else {
+            $comment->status = 'hidden';
+            $comment->save();
+            return redirect('admin/comments')->with('success', 'وضعیت نمایش نظر تغییر یافت!');
+        }
     }
 }

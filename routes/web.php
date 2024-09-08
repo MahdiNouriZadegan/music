@@ -52,7 +52,9 @@ Route::middleware('admin')->prefix('admin')->group(function() {
     Route::resource('/tags', TagController::class);
     Route::resource('/menus', MenuController::class);
     Route::resource('/singers', AdminSingerController::class);
+    // comments
     Route::resource('/comments', CommentController::class);
+    Route::get('/comments/change-status/{id}', [CommentController::class, 'change_status']);
     // musics
     Route::resource('/musics', PostController::class);
     Route::group(['prefix'=>'/musics'],function() {
