@@ -11,7 +11,7 @@
         <a href="{{ url('admin/musics/create') }}" class="link"><span>ساخت</span></a>
     </div>
     <div class="user-new-music">
-        @if ($users->isEmpty())
+        @if ($musics->isEmpty())
             <p class="text-center pt-4">موردی یافت نشد!</p>
         @else
             @foreach ($musics as $music)
