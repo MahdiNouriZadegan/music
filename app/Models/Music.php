@@ -11,7 +11,7 @@ class Music extends Model
     use HasFactory;
 
     public function tags() {
-        return $this->hasMany(Tag::class);
+        return $this->belongsToMany(Tag::class);
     }
 
     public function comments() {
@@ -19,7 +19,7 @@ class Music extends Model
     } 
 
     public function favorites() {
-        return $this->belongsToMany(Favorite::class);
+        return $this->hasMany(Favorite::class);
     }
 
     public function user() {
@@ -29,4 +29,22 @@ class Music extends Model
     public function singer() {
         return $this->belongsTo(Singer::class);
     }
+
+    public function menu() {
+        return $this->belongsTo(Menu::class);
+    }
+
+    protected $fillable = [
+        'title',
+        'description',
+        'content',
+        'singer_id',
+        'menu_id',
+        'commentable',
+        'reactionable',
+        'status',
+        'view',
+        'cover',
+        'music_url'
+    ];
 }

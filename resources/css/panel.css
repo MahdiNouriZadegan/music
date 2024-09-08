@@ -56,3 +56,14 @@
 .left-side-panel ul li a:hover::before {
     scale: 1;
 }
+
+.audio-panel {
+    width: 100%;
+    padding: 0;
+    margin: 10px;
+}
+
+.close-modal {
+    position: absolute;
+    left: 10;
+}

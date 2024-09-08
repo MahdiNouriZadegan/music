@@ -14,6 +14,6 @@ class Favorite extends Model
     }
 
     public function music() {
-        return $this->hasOne(Music::class);
+        return $this->belongsToMany(Music::class);
     }
 }

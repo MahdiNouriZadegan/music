@@ -49,12 +49,16 @@ Route::middleware('auth')->get('logout', [AuthController::class, 'logout'])->nam
 
 Route::middleware('admin')->prefix('admin')->group(function() {
     Route::get('/',[PanelController::class, 'index']);
-    Route::resource('/posts', PostController::class);
     Route::resource('/tags', TagController::class);
     Route::resource('/menus', MenuController::class);
     Route::resource('/singers', AdminSingerController::class);
     Route::resource('/comments', CommentController::class);
-    
+    // musics
+    Route::resource('/musics', PostController::class);
+    Route::group(['prefix'=>'/musics'],function() {
+        Route::post('/change-status', [PostController::class, 'change_status']);    
+    });
+
     Route::group(['prefix'=>'/users'],function() {
         Route::get('/', [UserController::class, 'index']);
         Route::delete('/delete/{id}', [UserController::class, 'delete']);

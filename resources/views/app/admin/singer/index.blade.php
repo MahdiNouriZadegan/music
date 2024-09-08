@@ -17,14 +17,13 @@
             <div class="user-new-music">
                 <div class="m-2 border rounded">
                     <div class="header mb-2 d-flex justify-content-between">
-
                         <div class="w-50 singer-name">
                             <p class="my-1 overflow-hidden"><i class="fa fa-user"></i> &nbsp; {{ $singer->name }}</p>
                         </div>
                         <div class="w-25 song-name">
                             <p class="my-1 overflow-hidden"><i class="text-warning fa fa-clock-o" aria-hidden="true"></i>
                                 &nbsp;
-                                @include('app.layouts.admin.dates')
+                                @include('app.layouts.admin.dates', ['data'=> $singer])
                             </p>
                         </div>
                         <div class="w-25 singer-name">

@@ -2,8 +2,15 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
+use Carbon\Carbon;
+use App\Models\Tag;
+use App\Models\Menu;
+use App\Models\Music;
+use App\Models\Singer;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\MusicRequest;
+use Illuminate\Support\Facades\File;
 
 class PostController extends Controller
 {
@@ -12,7 +19,8 @@ class PostController extends Controller
      */
     public function index()
     {
-        //
+        $musics = Music::all();
+        return view('app.admin.post.index')->with('musics', $musics);
     }
 
     /**
@@ -20,15 +28,55 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        $menus = Menu::all();
+        $tags = Tag::all();
+        $singers = Singer::all();
+        return view('app.admin.post.create')->with(['menus' => $menus, 'tags' => $tags, 'singers' => $singers]);
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(MusicRequest $request)
     {
-        //
+
+        // save cover
+        $coverName =  Carbon::now()->getTimestamp() . '.' . $request->cover->extension();
+        $request->cover->move(public_path('musics-images'), $coverName);
+        // save music
+        $musicName =  Carbon::now()->getTimestamp() . '.' . $request->music->extension();
+        $request->music->move(public_path('musics-audios'), $musicName);
+        // change music's name and cover's name for insert to database
+        $musicName = 'musics-audios/' . $musicName;
+        $coverName = 'musics-images/' . $coverName;
+        // check reaction and comment are actives or not
+        if ($request->filled('reactionable')) {
+            $request->reactionable = 'active';
+        } else {
+            $request->reactionable = 'inactive';
+        }
+        if ($request->filled('commentable')) {
+            $request->commentable = 'active';
+        } else {
+            $request->reactionable = 'inactive';
+        }
+
+        // insert data to musics table
+        $music = Music::create([
+            'title' => $request->title,
+            'description' => $request->description,
+            'content' => $request->content,
+            'singer_id' => $request->singer_id,
+            'menu_id' => $request->menu_id,
+            'commentable' => $request->commentable,
+            'reactionable' => $request->reactionable,
+            'status' => $request->status,
+            'view' => '0',
+            'cover' => $coverName,
+            'music_url' => $musicName
+        ]);
+        $music->tags()->attach($request->tags);
+        return redirect('admin/musics')->with('success', 'موزیک با موفقیت اضافه شد!');
     }
 
     /**
@@ -36,7 +84,14 @@ class PostController extends Controller
      */
     public function show(string $id)
     {
-        //
+        
+        $menus = Menu::all();
+        $singers = Singer::all();
+        $music = Music::findOrFail($id);
+        $notInTags = Tag::whereNotIn('id', $music->tags()->pluck('tag_id')->toArray())->get();
+        $inTags = Tag::whereIn('id', $music->tags()->pluck('tag_id')->toArray())->get();
+        return view('app.admin.post.show')->with(['menus' => $menus, 'notInTags' => $notInTags, 'inTags' => $inTags, 'singers' => $singers, 'music' => $music]);
+
     }
 
     /**
@@ -44,7 +99,12 @@ class PostController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $menus = Menu::all();
+        $singers = Singer::all();
+        $music = Music::findOrFail($id);
+        $notInTags = Tag::whereNotIn('id', $music->tags()->pluck('tag_id')->toArray())->get();
+        $inTags = Tag::whereIn('id', $music->tags()->pluck('tag_id')->toArray())->get();
+        return view('app.admin.post.edit')->with(['menus' => $menus, 'notInTags' => $notInTags, 'inTags' => $inTags, 'singers' => $singers, 'music' => $music]);
     }
 
     /**
@@ -52,7 +112,59 @@ class PostController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $music = Music::findOrFail($id);
+
+        if ($request->cover != null) {
+            if (File::exists(public_path($music->cover))) {
+                File::delete(public_path($music->cover));
+            }
+            // save cover
+            $coverName =  Carbon::now()->getTimestamp() . '.' . $request->cover->extension();
+            $request->cover->move(public_path('musics-images'), $coverName);
+            $coverName = 'musics-images/' . $coverName;
+        } else {
+            $coverName = $music->cover;
+        }
+        if ($request->music_file != null) {
+            if (File::exists(public_path($music->music_url))) {
+                File::delete(public_path($music->music_url));
+            }
+            // save music
+            $musicName =  Carbon::now()->getTimestamp() . '.' . $request->music_file->extension();
+            $request->music_file->move(public_path('musics-audios'), $musicName);
+            $musicName = 'musics-audios/' . $musicName;
+        } else {
+            $musicName = $music->music_url;
+        }
+        // change music's name and cover's name for insert to database
+        // check reaction and comment are actives or not
+        if ($request->filled('reactionable')) {
+            $request->reactionable = 'active';
+        } else {
+            $request->reactionable = 'inactive';
+        }
+        if ($request->filled('commentable')) {
+            $request->commentable = 'active';
+        } else {
+            $request->reactionable = 'inactive';
+        }
+
+        // insert data to musics table
+        $music->update([
+            'title' => $request->title,
+            'description' => $request->description,
+            'content' => $request->content,
+            'singer_id' => $request->singer_id,
+            'menu_id' => $request->menu_id,
+            'commentable' => $request->commentable,
+            'reactionable' => $request->reactionable,
+            'status' => $request->status,
+            'cover' => $coverName,
+            'music_url' => $musicName
+        ]);
+        $music->tags()->attach($request->tags);
+        
+        return redirect('admin/musics')->with('success', 'موزیک با تغییر یافت!');
     }
 
     /**
@@ -60,6 +172,33 @@ class PostController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $music = Music::findOrFail($id);
+
+        // delete files from public folder
+        if (File::exists(public_path($music->cover))) {
+            File::delete(public_path($music->cover));
+        }
+        if (File::exists(public_path($music->music_url))) {
+            File::delete(public_path($music->music_url));
+        }
+        Music::destroy($id);
+        return redirect('admin/musics')->with('success', 'صفحه آهنگ با موفقیت حذف کردید!');
+    }
+    public function change_status(Request $request)
+    {
+        $request->validate([
+            'id' => 'required'
+        ]);
+        $id = $request->id;
+        $music = Music::findOrFail($id);
+        if ($music->status == 'hidden') {
+            $music->status = 'show';
+            $music->save();
+            return redirect('admin/musics')->with('success', 'وضعیت نمایش صفحه مورد نظر تغییر یافت!');
+        } else {
+            $music->status = 'hidden';
+            $music->save();
+            return redirect('admin/musics')->with('success', 'وضعیت نمایش صفحه مورد نظر تغییر یافت!');
+        }
     }
 }

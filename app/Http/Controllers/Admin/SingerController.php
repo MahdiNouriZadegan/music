@@ -47,7 +47,7 @@ class SingerController extends Controller
     {
         $request->validate([
             'name' => 'required|unique:singers',
-            'image' => 'required|image|max:2048|dimensions:min_width=100,min_height=100,max_width=500,max_height=500',
+            'image' => 'required|image|max:2048|dimensions:min_width=100,min_height=100',
         ]);
 
         $imageName =  Carbon::now()->getTimestamp() . '.' . $request->image->extension();

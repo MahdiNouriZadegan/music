@@ -17,7 +17,7 @@
         @foreach ($tags as $tag)
             @foreach ($tag->musics()->get() as $post)
                 @php
-                    $count += count($post->comments());
+                    $count += count($post->comments()->get());
                 @endphp
             @endforeach
         @endforeach
