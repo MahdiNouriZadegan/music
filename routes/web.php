@@ -63,8 +63,8 @@ Route::middleware('admin')->prefix('admin')->group(function() {
 
     Route::group(['prefix'=>'/users'],function() {
         Route::get('/', [UserController::class, 'index']);
-        Route::delete('/delete/{id}', [UserController::class, 'delete']);
-        Route::post('/permission', [UserController::class, 'permission']);
+        Route::delete('/{id}', [UserController::class, 'destroy']);
+        Route::get('/permission/{id}', [UserController::class, 'permission']);
     });
 });
 
