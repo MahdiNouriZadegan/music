@@ -8,7 +8,7 @@
             <li><a href="{{ url('admin/singers') }}">خواننده ها</a></li>
             <li><a href="{{ url('admin/tags') }}">تگ ها</a></li>
             <li><a href="{{ url('admin/users') }}">کاربران</a></li>
-            <li><a href="">تنظیمات</a></li>
+            <li><a href="{{ url('admin/websetting') }}">تنظیمات</a></li>
 
         </ul>
     </div>

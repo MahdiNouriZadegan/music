@@ -33,7 +33,7 @@
                     <div>
                         <p class="my-2 mx-3 text-justify">{{ $user->name }}</p>
                         <div class="d-flex">
-                            <form action="{{ url('admin/users/permission/' . $user->id) }}">
+                            <form action="{{ url('admin/users/permission/' . $user->id) }}" class="form">
                                 <button class="mx-1 btn btn-warning font-small" type="submit"><span>تغییر وضعیت نمایش
                                     </span></button>
                             </form>

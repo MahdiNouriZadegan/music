@@ -1,8 +1,8 @@
 <header class="container">
     <div class="site-header d-flex justify-content-between align-items-center">
         <div class="d-flex align-items-center">
-            <img src="images/music.png" alt="" class="logo p-1">
-            <h4>موسیقی کده</h4>
+            <img src="{{ asset($logo_url) }}" alt="" class="logo p-1">
+            <h4>{{ $site_name }}</h4>
         </div>
         <div class="search-header ">
             <form action="" class="">

@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\Admin\SingerController as AdminSingerController;
 use App\Http\Controllers\Admin\TagController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\WebsettingController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\MenuContentController;
 use App\Http\Controllers\PostContentController;
@@ -52,6 +53,7 @@ Route::middleware('admin')->prefix('admin')->group(function() {
     Route::resource('/tags', TagController::class);
     Route::resource('/menus', MenuController::class);
     Route::resource('/singers', AdminSingerController::class);
+    Route::resource('/websetting', WebsettingController::class);
     // comments
     Route::resource('/comments', CommentController::class);
     Route::get('/comments/change-status/{id}', [CommentController::class, 'change_status']);

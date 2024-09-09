@@ -8,4 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class Websetting extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'title',
+        'description',
+        'logo',
+        'phone',
+        'email'
+    ];
 }
