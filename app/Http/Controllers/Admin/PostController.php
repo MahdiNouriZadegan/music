@@ -39,7 +39,7 @@ class PostController extends Controller
      */
     public function store(MusicRequest $request)
     {
-
+        
         // save cover
         $coverName =  Carbon::now()->getTimestamp() . '.' . $request->cover->extension();
         $request->cover->move(public_path('musics-images'), $coverName);
@@ -50,17 +50,16 @@ class PostController extends Controller
         $musicName = 'musics-audios/' . $musicName;
         $coverName = 'musics-images/' . $coverName;
         // check reaction and comment are actives or not
-        if ($request->filled('reactionable')) {
-            $request->reactionable = 'active';
+        if ($request->reactionable == null) {
+            $reactionable = 'inactive';
         } else {
-            $request->reactionable = 'inactive';
+            $reactionable = 'active';
         }
-        if ($request->filled('commentable')) {
-            $request->commentable = 'active';
+        if ($request->commentable == null) {
+            $commentable = 'inactive';
         } else {
-            $request->reactionable = 'inactive';
+            $commentable = 'active';
         }
-
         // insert data to musics table
         $music = Music::create([
             'title' => $request->title,
@@ -68,12 +67,13 @@ class PostController extends Controller
             'content' => $request->content,
             'singer_id' => $request->singer_id,
             'menu_id' => $request->menu_id,
-            'commentable' => $request->commentable,
-            'reactionable' => $request->reactionable,
+            'commentable' => $commentable,
+            'reactionable' => $reactionable,
             'status' => $request->status,
             'view' => '0',
             'cover' => $coverName,
-            'music_url' => $musicName
+            'music_url' => $musicName,
+            'user_id' => auth()->user()->id
         ]);
         $music->tags()->attach($request->tags);
         return redirect('admin/musics')->with('success', 'موزیک با موفقیت اضافه شد!');
@@ -138,15 +138,15 @@ class PostController extends Controller
         }
         // change music's name and cover's name for insert to database
         // check reaction and comment are actives or not
-        if ($request->filled('reactionable')) {
-            $request->reactionable = 'active';
+        if ($request->reactionable == null) {
+            $reactionable = 'inactive';
         } else {
-            $request->reactionable = 'inactive';
+            $reactionable = 'active';
         }
-        if ($request->filled('commentable')) {
-            $request->commentable = 'active';
+        if ($request->commentable == null) {
+            $commentable = 'inactive';
         } else {
-            $request->reactionable = 'inactive';
+            $commentable = 'active';
         }
 
         // insert data to musics table
@@ -156,8 +156,8 @@ class PostController extends Controller
             'content' => $request->content,
             'singer_id' => $request->singer_id,
             'menu_id' => $request->menu_id,
-            'commentable' => $request->commentable,
-            'reactionable' => $request->reactionable,
+            'commentable' => $commentable,
+            'reactionable' => $reactionable,
             'status' => $request->status,
             'cover' => $coverName,
             'music_url' => $musicName

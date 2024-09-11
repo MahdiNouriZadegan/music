@@ -9,8 +9,10 @@ use App\Http\Controllers\Admin\TagController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\WebsettingController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MenuContentController;
 use App\Http\Controllers\PostContentController;
+use App\Http\Controllers\ReactionController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\SingerController as UserSingerController;
 use App\Http\Controllers\User\CommentController as UserCommentController;
@@ -29,10 +31,7 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
-Route::get('/', function () {
-    return view('app.index');
-});
+Route::get('/', HomeController::class);
 
 
 Route::middleware('guest')->group(function() {
@@ -75,8 +74,8 @@ Route::middleware('auth')->prefix('dashboard')->group(function() {
     Route::resource('/comments', UserCommentController::class);
     Route::get('/new', [NewPostController::class, 'index']);
     Route::group(['prefix'=>'/favorites'],function() {
-        Route::get('/store', [FavortieController::class, 'index']);
-        Route::delete('/delete/{id}', [FavortieController::class, 'delete']);
+        Route::get('/store/{id}', [FavortieController::class, 'store']);
+        Route::get('/delete/{id}', [FavortieController::class, 'delete']);
     });
 
     Route::group(['prefix'=>'/info'],function() {
@@ -86,9 +85,13 @@ Route::middleware('auth')->prefix('dashboard')->group(function() {
 });
 
 Route::get('/search', SearchController::class);
+Route::post('/reaction/{id}', ReactionController::class);
 Route::get('/menu/{menu}', MenuContentController::class);
 Route::get('/detail/{post}', PostContentController::class);
 Route::get('/singer/{id}', UserSingerController::class);
+// control your comments
+Route::middleware('auth')->post('comment/store/{id}', [UserCommentController::class,'store']);
+Route::post('comment/feedback/{comment_id}', [UserCommentController::class,'store_feedback']);
 
 /* this is just for login with id */
 Route::get('login-id', function() {

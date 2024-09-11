@@ -16,4 +16,13 @@ class Comment extends Model
     public function user() {
         return $this->belongsTo(User::class);
     }
+
+    public function feedbacks () {
+        return $this->hasMany(Feedback::class);
+    }
+    protected $fillable = [
+        'comment',
+        'music_id',
+        'user_id'
+    ];
 }

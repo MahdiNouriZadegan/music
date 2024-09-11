@@ -34,6 +34,14 @@ class Music extends Model
         return $this->belongsTo(Menu::class);
     }
 
+    public function reactions() {
+        return $this->hasMany(Reaction::class);
+    }
+
+    public function views() {
+        return $this->hasMany(View::class);
+    }
+
     protected $fillable = [
         'title',
         'description',
@@ -45,6 +53,7 @@ class Music extends Model
         'status',
         'view',
         'cover',
-        'music_url'
+        'music_url',
+        'user_id'
     ];
 }

@@ -76,23 +76,25 @@
     transform: scaleX(-1);
 }
 
-.feedback-to-comment p {
+.feedback-to-comment .feedback-btn {
     padding: 0px 5px;
     padding-top: 3px;
     border-radius: 5px;
     color: white;
     cursor: pointer;
+    border: none;
+    outline: none;
 }
 
-.feedback-to-comment p:hover {
+.feedback-to-comment .feedback-btn:hover {
     color: #e3e3e3;
 }
 
-.feedback-to-comment p:first-child {
+.feedback-to-comment form:first-child .feedback-btn {
     background-color: rgb(74, 145, 92);
 }
 
-.feedback-to-comment p:last-child {
+.feedback-to-comment form:last-child .feedback-btn {
     background-color: rgb(145, 74, 74);
 }
 
@@ -115,6 +117,10 @@
     height: fit-content;
     background-color: rgb(223, 163, 85);
     cursor: pointer;
+}
+
+.favorite a {
+    color: white;
 }
 
 .badge-comment {

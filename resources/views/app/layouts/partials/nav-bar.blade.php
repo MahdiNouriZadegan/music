@@ -26,10 +26,9 @@
     </div>
     <div class="menu-header">
         <ul>
-            <li><a href="">خانه</a></li>
-            <li><a href="">جدید ها</a></li>
-            <li><a href="">پاپ</a></li>
-            <li><a href="">سنتی</a></li>
+            @foreach ($list_menus as $menu)
+               <li><a href="{{ set_url('menu', $menu->name) }}">{{ $menu->name }}</a></li> 
+            @endforeach
         </ul>
     </div>
 

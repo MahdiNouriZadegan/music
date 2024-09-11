@@ -2,42 +2,11 @@
     <!-- Additional required wrapper -->
     <div class="swiper-wrapper">
         <!-- Slides -->
-        <div class="swiper-slide">
-            <img src="images/singer1.jpg" alt="" />
-            <a>محسن چاووشی</a>
-        </div>
-        <div class="swiper-slide">
-            <img src="images/singer1.jpg" alt="" />
-            <a>محسن چاووشی</a>
-        </div>
-        <div class="swiper-slide">
-            <img src="images/singer1.jpg" alt="" />
-            <a>محسن چاووشی</a>
-        </div>
-        <div class="swiper-slide">
-            <img src="images/singer1.jpg" alt="" />
-            <a>محسن چاووشی</a>
-        </div>
-        <div class="swiper-slide">
-            <img src="images/singer1.jpg" alt="" />
-            <a>محسن چاووشی</a>
-        </div>
-        <div class="swiper-slide">
-            <img src="images/singer1.jpg" alt="" />
-            <a>محسن چاووشی</a>
-        </div>
-        <div class="swiper-slide">
-            <img src="images/singer1.jpg" alt="" />
-            <a>محسن چاووشی</a>
-        </div>
-        <div class="swiper-slide">
-            <img src="images/singer1.jpg" alt="" />
-            <a>محسن چاووشی</a>
-        </div>
-        <div class="swiper-slide">
-            <img src="images/singer1.jpg" alt="" />
-            <a>محسن چاووشی</a>
-        </div>
-
+        @foreach ($list_singers as $singer)
+            <div class="swiper-slide">
+                <img src="{{ asset($singer->image) }}" alt="" />
+                <a href="{{ url('singer/'. $singer->id) }}">{{ $singer->name }}</a>
+            </div>
+        @endforeach
     </div>
 </div>

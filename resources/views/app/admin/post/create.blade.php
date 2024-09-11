@@ -45,7 +45,7 @@
 
                 <div class="col-4 mt-2">
                     <label for="tags">تگ ها</label>
-                    <select  value="{{ old('tags') }}" class="form-control js-example-basic-multiple" id="tags" name="tags[]"
+                    <select class="form-control js-example-basic-multiple" id="tags" name="tags[]"
                         multiple="multiple">
                         @foreach ($tags as $tag)
                             <option value="{{ $tag->id }}">{{ $tag->name }}</option>
@@ -71,11 +71,11 @@
                 </div>
                 <div class="col-6 mt-2">
                     <label for="reaction">بازخورد فعال باشد</label>
-                    <input type="checkbox" value="{{ old('reactionable') }}" checked name="reactionable" value="1" id="reaction">
+                    <input type="checkbox" checked name="reactionable" value="1" id="reaction">
                 </div>
                 <div class="col-6 mt-2">
                     <label for="commentable">نظرات فعال باشد</label>
-                    <input type="checkbox" value="{{ old('commentable') }}" checked name="commentable" value="1" id="commentable">
+                    <input type="checkbox" checked name="commentable" value="1" id="commentable">
                 </div>
                 <div class="col-12 mt-3">
                     <button class="btn btn-success">ایجاد</button>

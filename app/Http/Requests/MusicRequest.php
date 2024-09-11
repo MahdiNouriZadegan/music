@@ -11,6 +11,9 @@ class MusicRequest extends FormRequest
      */
     public function authorize(): bool
     {
+        if (auth()->check() && auth()->user()->permission == 'admin') {
+            return true;
+        }
         return false;
     }
 
@@ -22,14 +25,12 @@ class MusicRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title'=>['required', 'unique:musics'],
-            'content'=>['required', 'min:15', 'max:5000'],
-            'commentable'=>['integer'],
-            'reactionable'=>['integer'],
-            'cover'=>'required|image|max:2048|dimensions:min_width=100,min_height=100,max_width=500,max_height=500',
-            'music'=>'required|mimes:application/octet-stream,audio/mp3',
-            'menu_id'=>['integer', 'required'],
-            'singer_id'=>['integer', 'required'],
+            'title' => ['required', 'unique:musics'],
+            'content' => ['required', 'min:15', 'max:5000'],
+            'cover' => 'required|image|max:2048|dimensions:min_width=100,min_height=100',
+            'music' => 'required|mimes:mp3',
+            'menu_id' => ['integer', 'required'],
+            'singer_id' => ['integer', 'required'],
         ];
     }
 }

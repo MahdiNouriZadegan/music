@@ -5,17 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Reaction extends Model
+class View extends Model
 {
     use HasFactory;
 
-    public function music() {
-        return $this->hasOne(Music::class);
+    public function post() {
+        return $this->belongsTo(Music::class);
     }
-
     protected $fillable = [
-        'ip',
         'music_id',
-        'reaction'
+        'ip'
     ];
 }

@@ -2,6 +2,9 @@
 
 namespace App\Providers;
 
+use App\Models\Menu;
+use App\Models\Music;
+use App\Models\Singer;
 use App\Models\Websetting;
 use Illuminate\Support\ServiceProvider;
 
@@ -22,10 +25,13 @@ class AppServiceProvider extends ServiceProvider
     {
         $websetting = Websetting::first();
         if ($websetting) {
-            view()->share(['logo_url'=>$websetting->logo, 'site_name'=>$websetting->title]);
-            
+            view()->share(['logo_url'=>$websetting->logo, 'site_name'=>$websetting->title, 'websetting_provider'=>$websetting]);
         } else {
-            view()->share(['logo_url'=> '', 'site_name'=>'']);
+            view()->share(['logo_url'=> '', 'site_name'=>'', 'websetting_provider'=>'']);
         }
+        $singers = Singer::all();
+        $menus = Menu::all();
+        $mostViewMusics = Music::orderBy('view')->limit('3')->get();
+        view()->share(['list_singers' => $singers, 'list_menus'=>$menus, 'list_most_view_musics'=>$mostViewMusics]);
     }
 }

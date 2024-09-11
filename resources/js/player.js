@@ -84,7 +84,7 @@ function postionOfLine(event) {
 var copy = d.getElementById('copy-link');
 var shortLink = d.getElementById('short-link');
 copy.addEventListener('click', function() {
-    const textToCopy = 'https://' + shortLink.innerText;
+    const textToCopy = 'http://' + shortLink.innerText;
 
 
     const tempInput = document.createElement("textarea");

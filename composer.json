@@ -28,7 +28,8 @@
             "Database\\Seeders\\": "database/seeders/"
         },
         "files": [
-            "app/Helpers/jalali-helper.php"
+            "app/Helpers/jalali-helper.php",
+            "app/Helpers/set-url.php"
         ]
     },
     "autoload-dev": {

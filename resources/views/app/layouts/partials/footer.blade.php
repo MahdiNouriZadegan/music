@@ -11,18 +11,17 @@
 
         <div class="footer-content">
             <div class="footer-head">
-                <h4>جدید ترین آهنگ ها در موسیقی کده</h4>
+                <h4>{{ $websetting_provider->description }}</h4>
             </div>
             <div class="footer-menu">
                 <ul>
-                    <li><a href="">آهنگ</a></li>
-                    <li><a href="">خواننده</a></li>
-                    <li><a href="">آواز</a></li>
-                    <li><a href="">پاپ</a></li>
+                    @foreach ($list_menus as $menu)
+                    <li><a href="{{ set_url('menu', $menu->name) }}">{{ $menu->name }}</a></li> 
+                 @endforeach
                 </ul>
             </div>
             <div class="copy-right">
-                <p>تمام حقوقی مادی و معنوی متعلق به سایت موسیقی کده می باشد!</p>
+                <p>تمام حقوقی مادی و معنوی متعلق به سایت {{ $websetting_provider->title }} می باشد!</p>
             </div>
         </div>
 

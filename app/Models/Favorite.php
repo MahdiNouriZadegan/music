@@ -16,4 +16,9 @@ class Favorite extends Model
     public function music() {
         return $this->belongsToMany(Music::class);
     }
+
+    protected $fillable = [
+        'music_id',
+        'user_id'
+    ];
 }
