@@ -31,7 +31,7 @@
                         </div>
                         <div class="w-25 singer-name">
                             <p class="my-1 overflow-hidden"><i class="fa fa-eye" aria-hidden="true"></i> &nbsp;
-                                {{ $music->view }}</p>
+                                {{ count($music->views()->where('music_id', $music->id)->get()) }}</p>
                         </div>
                     </div>
                     <div class="d-flex">
@@ -57,12 +57,12 @@
                                 </form>
                                 <!-- Button trigger modal -->
                                 <a type="button" style="height: fit-content" class="btn btn-primary font-small"
-                                    data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                    data-bs-toggle="modal" data-bs-target="#exampleModal{{ $loop->iteration }}">
                                     نمایش
                                 </a>
 
                                 <!-- Modal -->
-                                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                                <div class="modal fade" id="exampleModal{{ $loop->iteration }}" tabindex="-1" aria-labelledby="exampleModalLabel"
                                     aria-hidden="true">
                                     <div class="modal-dialog modal-dialog-scrollable">
                                         <div class="modal-content">

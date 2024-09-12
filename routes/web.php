@@ -74,6 +74,8 @@ Route::middleware('auth')->prefix('dashboard')->group(function() {
     Route::resource('/comments', UserCommentController::class);
     Route::get('/new', [NewPostController::class, 'index']);
     Route::group(['prefix'=>'/favorites'],function() {
+        Route::get('/', [FavortieController::class, 'index']);
+        Route::get('/delete-all', [FavortieController::class, 'destroy_all']);
         Route::get('/store/{id}', [FavortieController::class, 'store']);
         Route::get('/delete/{id}', [FavortieController::class, 'delete']);
     });

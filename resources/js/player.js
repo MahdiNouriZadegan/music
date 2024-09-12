@@ -8,8 +8,10 @@ var audio = d.getElementById('audio');
 var lineBox = d.getElementsByClassName('time-line-box')[0];
 var volume = d.getElementById('volume');
 var volumeIcon = d.getElementById('volume-icon');
-
 var musicStatus = 0;
+
+
+
 musicStatusElem.addEventListener('click', function() {
     var musicIcon = document.getElementById('music-icon');
     if (musicStatus == 0) {
@@ -26,6 +28,7 @@ musicStatusElem.addEventListener('click', function() {
 });
 
 setInterval(() => {
+
     var persentOfPlay = audio.currentTime * 100 / audio.duration;
     line.style.width = persentOfPlay + '%';
     let leftTime = Math.floor(audio.duration - audio.currentTime);
@@ -70,15 +73,15 @@ goBack.addEventListener('click', function() {
 lineBox.addEventListener('click', postionOfLine);
 
 function postionOfLine(event) {
-    const rect = event.target.getBoundingClientRect();
 
+    const rect = event.target.getBoundingClientRect();
     const elementWidth = lineBox.offsetWidth;
     var clickX = event.clientX - rect.right;
     clickX = Math.abs(clickX);
     const percentage = (clickX * 100) / elementWidth;
     const time = audio.duration * percentage / 100;
     audio.currentTime = time;
-
+    debugger;
 }
 
 var copy = d.getElementById('copy-link');

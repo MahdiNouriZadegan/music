@@ -39,7 +39,7 @@
                                         نامفهوم از
                                         {{ $music->description }}</p>
                                     <br>
-                                    <a href="" class="link link-music mx-3"><span>پخش</span></a>
+                                    <a href="{{ set_url('detail', $music->title) }}" class="link link-music mx-3"><span>پخش</span></a>
                                 </div>
                             </div>
                         </div>
