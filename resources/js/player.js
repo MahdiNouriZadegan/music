@@ -62,10 +62,17 @@ function maxVolume() {
     volume.innerHTML = '100%';
 }
 
+audio.addEventListener('loadedmetadata', function() {
+    goAhead.addEventListener('click', function() {
+        try {
 
-goAhead.addEventListener('click', function() {
-    audio.currentTime += 10;
+        } catch (e) {
+            console.error('Error changing currentTime:', e);
+        }
+    });
+
 });
+
 goBack.addEventListener('click', function() {
     audio.currentTime -= 10;
 });
