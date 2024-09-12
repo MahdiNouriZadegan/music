@@ -62,17 +62,10 @@ function maxVolume() {
     volume.innerHTML = '100%';
 }
 
-audio.addEventListener('loadedmetadata', function() {
-    goAhead.addEventListener('click', function() {
-        try {
 
-        } catch (e) {
-            console.error('Error changing currentTime:', e);
-        }
-    });
-
+goAhead.addEventListener('click', function() {
+    audio.currentTime += 10;
 });
-
 goBack.addEventListener('click', function() {
     audio.currentTime -= 10;
 });
@@ -128,4 +121,7 @@ function changeVolume(event) {
     if (percentage / 100 <= 1) {
         audio.volume = percentage / 100;
     }
+}
+if (percentage / 100 <= 1) {
+    audio.volume = percentage / 100;
 }
