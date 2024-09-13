@@ -5,7 +5,7 @@
     </div>
     @foreach ($list_most_view_musics as $music)
         <div class="m-1 p-2 border rounded box">
-            <a href="" class="popular-link">{{ $music->title }}</a>
+            <a href="{{ set_url('detail', $music->title) }}" class="popular-link">{{ $music->title }}</a>
             <p class="text-dark font-small my-1">-> {{ $music->singer()->first()->name }}</p>
             <i>
                 <p class="text-secondary m-0 font-small">بازدید: {{ $music->view }}</p>

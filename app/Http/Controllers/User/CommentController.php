@@ -12,7 +12,7 @@ class CommentController extends Controller
 {
     public function index() {
         $user_id = auth()->user()->id;
-        $comments = Comment::where('user_id', $user_id)->with('music')->get();
+        $comments = Comment::where('user_id', $user_id)->with('music')->orderByDesc('id')->get();
         return view('app.panel.comments')->with(['comments'=>$comments]);
     }
     public function store(Request $request, $id) {

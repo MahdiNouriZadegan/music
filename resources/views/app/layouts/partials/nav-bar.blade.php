@@ -5,8 +5,8 @@
             <h4>{{ $site_name }}</h4>
         </div>
         <div class="search-header ">
-            <form action="" class="">
-                <input type="text" placeholder="دنبال چی می گردید؟" />
+            <form action="{{ url('/search') }}" method="get">
+                <input name="q" type="text" placeholder="دنبال چی می گردید؟" />
                 <button>جستجو کن</button>
             </form>
         </div>

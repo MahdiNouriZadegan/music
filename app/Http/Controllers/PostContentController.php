@@ -19,9 +19,12 @@ class PostContentController extends Controller
         $post = str_replace('-', ' ', $post);
         $post = htmlspecialchars(html_entity_decode($post));
 
-        $music = Music::where('title', $post)->first();
+        $music = Music::where(['title'=>$post, 'status'=>'show'])->first();
         if ($music == null) {
-            $music = Music::findOrFail($post);
+            $music = Music::where(['id'=>$post, 'status'=>'show'])->first();
+            if ($music == null) {
+                abort(404);
+            }
         }
         // set view
         $ip = request()->ip();

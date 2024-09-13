@@ -28,25 +28,28 @@
                             <div class="admin-section">
                                 <form action="{{ url('admin/musics/' . $music->id . '/edit') }}" method='GET'>
                                     @csrf
-                                    <button title="تغییر وضعیت نمایش" class="btn btn-success mt-3 py-2 mx-2"><i class="fa fa-pencil" aria-hidden="true"></i></button>
+                                    <button title="تغییر وضعیت نمایش" class="btn btn-success mt-3 py-2 mx-2"><i
+                                            class="fa fa-pencil" aria-hidden="true"></i></button>
                                 </form>
                             </div>
                         @endadmin
                         <div class="view">
-                            <span> {{ count($music->views()->where('music_id', $music->id)->get()) }} <i class="fa fa-eye" aria-hidden="true"></i></span>
+                            <span> {{ count($music->views()->where('music_id', $music->id)->get()) }} <i class="fa fa-eye"
+                                    aria-hidden="true"></i></span>
                         </div>
                         <div class="favorite">
-                        
+
                             @guest
                                 <span onclick="alert('برای اضافه شدن موسیقی به علاقه مندی ها باید ثبت نام یا وارد شوید!')"><i
                                         class="fa fa-star-o" aria-hidden="true"></i></span>
                             @endguest
                             @auth
                                 @if ($favorite != null)
-                                    <a href="{{ url('dashboard/favorites/delete/' . $music->id) }}" title="حذف از علاقه مندی ها"><i class="fa fa-star" aria-hidden="true"></i></a>
+                                    <a href="{{ url('dashboard/favorites/delete/' . $music->id) }}"
+                                        title="حذف از علاقه مندی ها"><i class="fa fa-star" aria-hidden="true"></i></a>
                                 @else
-                                    <a href="{{ url('dashboard/favorites/store/' . $music->id) }}" title="اضافه به علاقه مندی ها"><i class="fa fa-star-o"
-                                            aria-hidden="true"></i></a>
+                                    <a href="{{ url('dashboard/favorites/store/' . $music->id) }}"
+                                        title="اضافه به علاقه مندی ها"><i class="fa fa-star-o" aria-hidden="true"></i></a>
                                 @endif
                             @endauth
                         </div>
@@ -63,7 +66,9 @@
                     <div class="music-player">
                         <div class="time-line-box d-flex">
                             <div class="time-line"></div>
-                            <audio src="{{ asset($music->music_url) }}" id="audio"></audio>
+                            <audio id="audio" class="audio">
+                                <source src="{{ asset($music->music_url) }}" type="audio/mp3">
+                            </audio>
                         </div>
                         <div class="controllers d-flex justify-content-between py-3 align-items-center">
                             <div class="music-controllers d-flex align-items-center">

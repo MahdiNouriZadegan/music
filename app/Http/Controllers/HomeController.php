@@ -14,7 +14,7 @@ class HomeController extends Controller
     public function __invoke(Request $request)
     {
     
-        $newMusics = Music::orderBy('updated_at')->limit(5)->get();
+        $newMusics = Music::orderBy('updated_at')->where('status', 'show')->limit(5)->get();
         return view('app.index')->with(['new_musics'=>$newMusics]);
     }
 }

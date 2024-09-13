@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Requests\RegisterRequest;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
@@ -25,7 +26,7 @@ class AuthController extends Controller
         $user = User::create([
             'name' => $name,
             'email' => $email,
-            'password' => $password,
+            'password' => Hash::make($password),
             'avatar'=>'null'
         ]);
 
@@ -37,7 +38,27 @@ class AuthController extends Controller
     {
         return view('auth.login');
     }
-    public function login_store() {}
+    public function login_store(Request $request) {
+        $request->validate([
+            'password'=>['required'],
+            'email'=>['required']
+        ]);
+
+        $password = $request->password;
+        $email = $request->email;
+
+        $user = User::where('email', $email)->first();
+        if ($user == null) {
+            return redirect()->route('login')->with('error_message', 'کاربری با این مشخصات یافت نشد!');
+        } else {
+            if (password_verify($password, $user->password)){
+                auth()->login($user);
+                return redirect('/');
+            } else {
+                return redirect()->route('login')->with('error_message', 'کاربری با این مشخصات یافت نشد!');
+            }
+        }
+    }
 
     public function logout() {
         Auth::logout();

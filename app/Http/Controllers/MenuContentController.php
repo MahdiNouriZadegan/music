@@ -19,7 +19,7 @@ class MenuContentController extends Controller
         if ($menu == null) {
             abort(404);
         }
-        $musics = Music::where('menu_id', $menu->id)->get();
+        $musics = Music::where(['menu_id'=> $menu->id, 'status'=>'show'])->get();
         
         return view('app.menu')->with(['menu'=>$menu, 'musics'=>$musics]);
     }

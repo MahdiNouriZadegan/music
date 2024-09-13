@@ -33,7 +33,7 @@ class AppServiceProvider extends ServiceProvider
         }
         $singers = Singer::all();
         $menus = Menu::all();
-        $mostViewMusics = Music::orderBy('view')->limit('3')->get();
+        $mostViewMusics = Music::orderBy('view')->limit('3')->where('status', 'show')->get();
         view()->share(['list_singers' => $singers, 'list_menus'=>$menus, 'list_most_view_musics'=>$mostViewMusics]);
 
         Blade::if('admin', function(){

@@ -13,25 +13,27 @@
             <p class="text-center my-3">نظری یافت نشد!</p>
         @else
             @foreach ($comments as $comment)
+                @if ($comment->music->status == 'show')
                 <div class="m-2 border rounded">
                     <div class="header mb-2 d-flex justify-content-between">
-                        <div class="w-100 song-name">
+                        <div class="w-50 song-name">
                             <p class="my-1"><i class="fa fa-user"></i> &nbsp; شما به صفحه آهنگ <span class="bg-primary px-2 rounded">{{ $comment->music->title }}</span> نظر داده
                                 اید
                             </p>
                         </div>
+                        <div class="w-50 singer-name">
+                            <p class="my-1"><i class="fa fa-user"></i> &nbsp; شما به صفحه آهنگ <span @class(['px-2', 'rounded', 'bg-warning text-dark' => $comment->status == 'hidden','bg-success' => $comment->status == 'show']) class="px-2 rounded">{{ $comment->status == 'hidden' ? 'منتشر نشده است!' : 'منتشر شده است!' }}</span></p>
+                        </div>
                     </div>
                     <div class="d-flex">
-                        <img src="../images/singer1.jpg " class="image-new-post " alt=" ">
+                        <img src="{{ asset($comment->music->cover) }} " class="image-new-post " alt=" ">
                         <div>
-                            <p class="my-2 mx-3 text-justify font-small">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از
-                                صنعت چاپ و با استفاده از طراحان گرافیک است چاپگرها و متون بلکه روزنامه و مجله در ستون و
-                                سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف
-                            </p>
-                            <a href="" class="btn btn-warning mx-3"><small>مشاهده</small></a>
+                            <p class="my-2 mx-3 text-justify font-small">{{ $comment->comment }}</p>
+                            <a href="{{ set_url('detail', $comment->music->id) }}" class="btn btn-warning mx-3"><small>مشاهده</small></a>
                         </div>
                     </div>
                 </div>
+                @endif
             @endforeach
         @endif
     </div>
